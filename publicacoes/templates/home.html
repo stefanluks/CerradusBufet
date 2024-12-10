@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block page_style %}
+    <style>
+        section{
+            width: 100%;
+            /* min-height: 300px; */
+        }
+        .img-thumbnail{
+            height: 300px !important;
+        }
+        .font-titulo{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+        .galeria-bg{
+            border-radius: 20px !important;
+            background-color: rgba(0, 34, 0, 0.734);
+            padding: 10px 5px;
+        }
+        .contato-bg{
+            border-radius: 20px !important;
+            background-color: rgba(0, 34, 0, 0.734);
+            padding: 10px 5px;
+        }
+        .rede{
+            min-width: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+{% endblock %}
+
+{% block page %}
+    <section id="Home" class="d-flex">
+        <div class="container my-2">
+            <img src="{{img_capa.imagem.url}}" alt="imagem de logo" class="img-fluid my-3" style="border-radius: 20px !important; box-shadow: 0 0 20px black;">
+        </div>
+    </section>
+    <section id="Galeria">
+        <div class="container galeria-bg">
+            <h3 class="fs-2 font-titulo">Galeria de Fotos <i class="bi bi-image"></i></h3>
+            <div id="galeria-imgs" class="d-flex align-items-center justify-content-start" style="overflow-x: hidden;">
+                {% for img in galeria %}
+                    <img src="{{img.imagem.url}}" class="img-thumbnail mx-1" alt="{{img.titulo}}">
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section id="contato">
+        <div class="container contato-bg rounded my-2 p-3">
+            <h3 class="fs-2 font-titulo">Contato <i class="bi bi-telephone-fill"></i></h3>
+            <div class="contatos d-flex px-2">
+                <div class="telefones d-flex flex-column w-50">
+                    <div class="tel d-flex">
+                        <a style="text-decoration: none;" class="text-light" href="tel:+556398426-7536">(63) 98426-7536 - Nilson Jr.</a>
+                        <a href="https://wa.me/+5563984267536" class="text-success"><i class="bi bi-whatsapp mx-2"></i></a>
+                    </div>
+                    <div class="tel d-flex">
+                        <a style="text-decoration: none;" class="text-light" href="tel:+556398486-1900">(63) 98486-1900 - Maria de Jesus.</a>
+                        <a href="https://wa.me/+5563984861900" class="text-success"><i class="bi bi-whatsapp mx-2"></i></a>
+                    </div>
+                    <div class="tel d-flex">
+                        <a style="text-decoration: none;" class="text-light" href="tel:+556398148-7472">(63) 98148-7472 - Stefan Lucas</a>
+                        <a href="https://wa.me/+5563981487472" class="text-success"><i class="bi bi-whatsapp mx-2"></i></a>
+                    </div>
+                </div>
+                <div class="redes-sociais d-flex">
+                    <a style="text-decoration: none;" href="https://www.instagram.com/cerradusbuffet/" class="rede w-50 h-100 bg bg-light mx-2 rounded flex-column">
+                        <i class="fs-1 bi bi-instagram"></i>
+                        <div class="text-dark" >@cerradusbuffet</div>
+                    </a>
+                    <a style="text-decoration: none;" href="https://www.youtube.com/@cerradusbuffet7447" class="rede w-50 h-100 bg bg-light text-danger mx-2 rounded flex-column">
+                        <i class="fs-1 bi bi-youtube"></i>
+                        <div class="text-dark" >Cerradu's Buffet</div>
+                    </a>
+                    <a style="text-decoration: none;" href="https://www.facebook.com/Cerradusbuffet" class="rede w-50 h-100 bg bg-light text-primary mx-2 rounded flex-column">
+                        <i class="fs-1 bi bi-facebook"></i>
+                        <div class="text-dark" >Buffet Page</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_script %}
+    <script>
+        window.onload = () => {
+            const galeria = document.getElementById("galeria-imgs");
+            let left = 0;
+            galeria.addEventListener("scroll", e => {
+                // console.log(galeria.scrollLeft)
+            })
+            let scroll = setInterval(() => {
+                galeria.scrollTo({
+                    left: left,
+                    behavior: "smooth",
+                });
+                if(left < 1744) left += 250;
+                else left = 0;
+            }, 2000)
+        }
+    </script>
+{% endblock %}

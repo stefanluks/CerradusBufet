@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block page_style %}
+    <style>
+        section{
+            width: 100%;
+            /* min-height: 300px; */
+        }
+        .img-thumbnail{
+            height: 250px !important;
+            opacity: 1;
+            transition: .7s;
+            cursor: pointer;
+        }
+        .img-thumbnail:hover{
+            opacity: .5;
+        }
+        .font-titulo{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+        .galeria-bg{
+            border-radius: 20px !important;
+            background-color: rgba(0, 34, 0, 0.734);
+            padding: 10px 5px;
+        }
+        .add-img{
+            width: 250px;
+            height: 250px;
+            background-color: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            opacity: .8;
+            transition: .7s;
+            cursor: pointer;
+        }
+        .add-img:hover{
+            opacity: 1;
+        }
+        .imagem-galeria{
+            margin: 10px;
+            background-color: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            opacity: .8;
+            transition: .7s;
+            cursor: pointer;
+            position: relative;
+        }
+        .imagem-galeria i{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(0, 0, 0);
+            opacity: 0;
+            transition: 1s;
+        }
+        .imagem-galeria:hover > i{
+            opacity: 1;
+        }
+    </style>
+{% endblock %}
+
+{% block page %}
+    <section class="d-flex my-3">
+        <div class="container galeria-bg">
+            <div class="titulo d-flex align-items-center justify-content-between">
+                <h3 class="fs-2 font-titulo">Gerenciar Galeria de Fotos <i class="bi bi-image"></i></h3>
+                <div class="btn btn-light">Salvar</div>
+            </div>
+            <div id="galeria-imgs" class="d-flex align-items-center justify-content-arround flex-wrap">
+                <div class="add-img">
+                    <i class="bi bi-plus-square-fill"></i>
+                </div>
+                {% for img in imagens %}
+                    <div class="imagem-galeria">
+                        <img src="{{img.imagem.url}}" id="{{img.id}}" class="img-thumbnail" alt="{{img.titulo}}">
+                        <i class="bi bi-trash3"></i>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_script %}
+    <script>
+        window.onload = () => {
+            const imagens = document.querySelectorAll(".img-thumbnail");
+            imagens.forEach(img => {
+                img.addEventListener("click", () => {
+                    console.log(img.id);
+                    img.parentElement.hidden = true;
+                });
+            })
+        }
+    </script>
+{% endblock %}
