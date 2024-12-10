@@ -31,8 +31,9 @@ class Publicacoes(models.Model):
         verbose_name_plural = "Publicações"
 
     titulo = models.CharField("Titulo do post", max_length=250)
+    resumo = models.TextField("Resumo do post", max_length=800, null=True, blank = True)
     conteudo = models.TextField("Conteúdo do post", max_length=5000, null=True, blank = True)
-    img_capa = models.CharField("Imagem de Capa", max_length=2500, null=True, blank=True)
+    img_capa = models.FileField("Imagem de Capa", upload_to="static/imagens", null=True, blank=True)
     autor = models.ForeignKey(User, related_name="Autor", on_delete=models.CASCADE, blank=True)
 
     def __str__(self):

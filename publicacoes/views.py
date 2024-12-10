@@ -4,7 +4,7 @@ from .models import Publicacoes, CapaPrincipal, Imagem
 
 def Home(request):
     return render(request, 'home.html', {
-        "ultimasPublicacoes": [],
+        "publicacoes": list(Publicacoes.objects.all())[:4],
         "img_capa": CapaPrincipal.objects.get(pk=1),
         "galeria": Imagem.objects.all()
     })
