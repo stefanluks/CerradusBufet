@@ -39,6 +39,7 @@
         </div>
     </section>
     <section id="Galeria">
+        {% if galeria %}
         <div class="container galeria-bg">
             <h3 class="fs-2 font-titulo">Galeria de Fotos <i class="bi bi-image"></i></h3>
             <div id="galeria-imgs" class="d-flex align-items-center justify-content-start" style="overflow-x: hidden;">
@@ -47,6 +48,7 @@
                 {% endfor %}
             </div>
         </div>
+        {% endif %}
     </section>
     <section id="contato">
         <div class="container contato-bg rounded my-2 p-3">
@@ -84,6 +86,7 @@
         </div>
     </section>
     <section id="publicacoes" class="my-2">
+        {% if publicacoes %}
         <div class="container galeria-bg">
             <h3 class="fs-2 font-titulo">Publicações <i class="bi bi-postcard"></i></h3>
             <div class="d-flex flex-wrap">
@@ -103,6 +106,7 @@
                 {% endfor %}
             </div>
         </div>
+        {% endif %}
     </section>
 {% endblock %}
 
